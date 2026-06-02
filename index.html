@@ -1,185 +1,89 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lundy портфолио</title>
+  <meta charset="UTF-8">
+  <title>Lundy Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-    font-family:'Inter',sans-serif;
-    background:#0a0a0a;
-    color:#fff;
-    overflow-x:hidden;
-}
+    h1 {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 40px;
+    }
 
-/* gradient background */
-.bg{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background: radial-gradient(circle at 20% 30%, #3a86ff33, transparent 40%),
-                radial-gradient(circle at 80% 70%, #ff006e33, transparent 40%);
-    z-index:-1;
-    animation: moveBg 10s infinite alternate ease-in-out;
-}
-@keyframes moveBg{
-    0%{transform:translateY(0)}
-    100%{transform:translateY(-50px)}
-}
+    .section {
+      margin: 60px auto;
+      max-width: 1200px;
+    }
 
-section{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
-}
+    .title {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
 
-h1{
-    font-size:60px;
-    font-weight:800;
-    background:linear-gradient(90deg,#3a86ff,#ff006e);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation: fadeUp 1s ease forwards;
-}
+    .row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-.title{
-    margin-bottom:20px;
-    font-size:22px;
-    letter-spacing:2px;
-    opacity:.7;
-}
-
-.row{
-    display:flex;
-    gap:30px;
-    overflow-x:auto;
-    padding:20px;
-}
-
-video{
-    border-radius:20px;
-    transition:0.4s;
-    box-shadow:0 10px 40px rgba(0,0,0,0.5);
-}
-
-video:hover{
-    transform:scale(1.05);
-}
-
-.horizontal video{
-    width:45vw;
-    max-width:800px;
-}
-
-.reels video{
-    width:260px;
-    height:460px;
-    object-fit:cover;
-}
-
-/* links */
-.links{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    align-items:center;
-}
-
-a{
-    text-decoration:none;
-    color:#fff;
-    font-weight:600;
-    position:relative;
-}
-
-a::after{
-    content:'';
-    position:absolute;
-    left:0;
-    bottom:-5px;
-    width:0;
-    height:2px;
-    background:linear-gradient(90deg,#3a86ff,#ff006e);
-    transition:.3s;
-}
-
-a:hover::after{
-    width:100%;
-}
-
-/* animations */
-@keyframes fadeUp{
-    from{opacity:0; transform:translateY(30px)}
-    to{opacity:1; transform:translateY(0)}
-}
-.fade{
-    opacity:0;
-    transform:translateY(40px);
-    transition:0.8s;
-}
-.fade.show{
-    opacity:1;
-    transform:translateY(0);
-}
-</style>
+    video {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-
-<section>
 <h1>Lundy портфолио</h1>
-</section>
 
-<section class="fade">
-<div class="title">Горизонтальные видео</div>
-<div class="row horizontal">
-<video autoplay loop muted playsinline onclick="this.muted=false" src="work1.mp4"></video>
-<video autoplay loop muted playsinline onclick="this.muted=false" src="work2.mp4"></video>
+<div class="section">
+  <div class="title">Горизонтальные видео</div>
+  <div class="row">
+
+    <video autoplay loop muted playsinline onclick="this.muted=false">
+      <source src="./work1.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay loop muted playsinline onclick="this.muted=false">
+      <source src="./work2.mp4" type="video/mp4">
+    </video>
+
+  </div>
 </div>
-</section>
 
-<section class="fade">
-<div class="title">Вертикальные видео</div>
-<div class="row reels">
-<video autoplay loop muted playsinline onclick="this.muted=false" src="reel1.mp4"></video>
-<video autoplay loop muted playsinline onclick="this.muted=false" src="reel2.mp4"></video>
-<video autoplay loop muted playsinline onclick="this.muted=false" src="reel3.mp4"></video>
-<video autoplay loop muted playsinline onclick="this.muted=false" src="reel4.mp4"></video>
+<div class="section">
+  <div class="title">Вертикальные видео</div>
+  <div class="row">
+
+    <video autoplay loop muted playsinline onclick="this.muted=false">
+      <source src="./reel1.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay loop muted playsinline onclick="this.muted=false">
+      <source src="./reel2.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay loop muted playsinline onclick="this.muted=false">
+      <source src="./reel3.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay loop muted playsinline onclick="this.muted=false">
+      <source src="./reel4.mp4" type="video/mp4">
+    </video>
+
+  </div>
 </div>
-</section>
-
-<section class="links fade">
-<a href="https://t.me/zumqm" target="_blank">Связь со мной — Telegram</a>
-</section>
-
-<section class="links fade">
-<div class="title">Мои соц сети</div>
-<a href="https://www.youtube.com/@lundy009" target="_blank">YouTube</a>
-<a href="https://www.tiktok.com/@lundy_montage" target="_blank">TikTok</a>
-</section>
-
-<script>
-const faders = document.querySelectorAll('.fade');
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('show');
-        }
-    });
-});
-
-faders.forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
