@@ -3,126 +3,237 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lundy портфолио</title>
+<title>lundy_montage портфолио</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --accent-violet: #8a2be2;
+    --accent-neon: #bd00ff;
+    --bg-dark: #050505;
+    --video-border: rgba(189, 0, 255, 0.15);
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
 body{
     font-family:'Inter',sans-serif;
-    background:#0a0a0a;
+    background: var(--bg-dark);
     color:#fff;
     overflow-x:hidden;
 }
 
-/* gradient background */
+/* Глубокий темный фон с фиолетовым неоновым свечением */
 .bg{
     position:fixed;
     width:100%;
     height:100%;
-    background: radial-gradient(circle at 20% 30%, #3a86ff33, transparent 40%),
-                radial-gradient(circle at 80% 70%, #ff006e33, transparent 40%);
+    background: radial-gradient(circle at 15% 25%, rgba(138, 43, 226, 0.12), transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(189, 0, 255, 0.12), transparent 45%);
     z-index:-1;
     animation: moveBg 10s infinite alternate ease-in-out;
 }
 @keyframes moveBg{
-    0%{transform:translateY(0)}
-    100%{transform:translateY(-50px)}
+    0%{transform:translateY(0) scale(1)}
+    100%{transform:translateY(-20px) scale(1.03)}
 }
 
 section{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-section {
+    min-height: 90vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 h1{
-    font-size:60px;
-    font-weight:800;
-    background:linear-gradient(90deg,#3a86ff,#ff006e);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    font-size: clamp(40px, 6.5vw, 75px);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, var(--accent-neon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     animation: fadeUp 1s ease forwards;
+    letter-spacing: -2px;
+    margin-bottom: 40px;
 }
 
 .title{
-    margin-bottom:20px;
-    font-size:22px;
-    letter-spacing:2px;
-    opacity:.7;
+    margin-bottom: 30px;
+    font-size: 18px;
+    letter-spacing: 4px;
+    opacity: .6;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(189, 0, 255, 0.3);
 }
 
-.row{
-    display:flex;
-    gap:30px;
-    overflow-x:auto;
-    padding:20px;
+/* Сетки для видео и карточек */
+.video-grid, .info-grid {
+    display: grid;
+    gap: 30px;
+    width: 100%;
 }
 
-video{
-    border-radius:20px;
-    transition:0.4s;
-    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+.horizontal .video-grid {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 }
 
-video:hover{
-    transform:scale(1.05);
+@media (max-width: 500px) {
+    .horizontal .video-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-.horizontal video{
-    width:45vw;
-    max-width:800px;
+.reels .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 }
 
-.reels video{
-    width:260px;
-    height:460px;
-    object-fit:cover;
+/* Стиль плееров */
+video {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+    background: #000;
+    border: 1px solid var(--video-border);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* links */
-.links{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    align-items:center;
+video:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--accent-neon);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 
+                0 0 30px rgba(189, 0, 255, 0.25);
 }
 
-a{
-    text-decoration:none;
-    color:#fff;
-    font-weight:600;
-    position:relative;
+.horizontal video {
+    aspect-ratio: 16/9;
+    object-fit: cover;
 }
 
-a::after{
-    content:'';
-    position:absolute;
-    left:0;
-    bottom:-5px;
-    width:0;
-    height:2px;
-    background:linear-gradient(90deg,#3a86ff,#ff006e);
-    transition:.3s;
+.reels video {
+    aspect-ratio: 9/16;
+    object-fit: cover;
 }
 
-a:hover::after{
-    width:100%;
+/* Блок заказа монтажа */
+.order-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 35px;
+    animation: fadeUp 1.1s ease forwards;
 }
 
-/* animations */
+.order-text {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Блок соцсетей */
+.socials-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: fadeUp 1.3s ease forwards;
+}
+
+.socials-title {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.4;
+    font-weight: 600;
+}
+
+.btn-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Минималистичные кнопки */
+.btn {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 14px 28px;
+    border-radius: 14px;
+    background: rgba(138, 43, 226, 0.03);
+    border: 1px solid rgba(189, 0, 255, 0.15);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    color: #fff;
+    border-color: var(--accent-neon);
+    background: rgba(189, 0, 255, 0.08);
+    box-shadow: 0 0 25px rgba(189, 0, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Стиль карточек с фактами */
+.info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-top: 10px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--video-border);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-neon);
+    background: rgba(189, 0, 255, 0.04);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(189, 0, 255, 0.15);
+}
+
+.info-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+    background: linear-gradient(90deg, #fff, #df99ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.info-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Анимации */
 @keyframes fadeUp{
-    from{opacity:0; transform:translateY(30px)}
+    from{opacity:0; transform:translateY(40px)}
     to{opacity:1; transform:translateY(0)}
 }
 .fade{
     opacity:0;
-    transform:translateY(40px);
-    transition:0.8s;
+    transform:translateY(50px);
+    transition: cubic-bezier(0.16, 1, 0.3, 1) 1.2s;
 }
 .fade.show{
     opacity:1;
@@ -135,65 +246,88 @@ a:hover::after{
 
 <div class="bg"></div>
 
-<section>
-<h1>Lundy портфолио</h1>
+<!-- Главный экран -->
+<section class="welcome-section">
+    <h1>lundy_montage</h1>
+    
+    <div class="order-block">
+        <span class="order-text">Заказать монтаж:</span>
+        <a href="https://t.me/zumqm" target="_blank" class="btn">Telegram</a>
+    </div>
+
+    <div class="socials-block">
+        <div class="socials-title">Social Media</div>
+        <div class="btn-container">
+            <a href="https://www.youtube.com/@lundy009" target="_blank" class="btn">YouTube</a>
+            <a href="https://www.tiktok.com/@lundy_montage" target="_blank" class="btn">TikTok</a>
+        </div>
+    </div>
 </section>
 
+<!-- Горизонтальные видео -->
+<section class="fade horizontal">
+    <div class="title">Horizontal</div>
+    <div class="video-grid">
+        <video autoplay loop muted playsinline controls src="work1.mp4"></video>
+        <video autoplay loop muted playsinline controls src="work2.mp4"></video>
+    </div>
+</section>
+
+<!-- Вертикальные видео -->
+<section class="fade reels">
+    <div class="title">Vertical / Reels</div>
+    <div class="video-grid">
+        <video autoplay loop muted playsinline controls src="reel1.mp4"></video>
+        <video autoplay loop muted playsinline controls src="reel2.mp4"></video>
+        <video autoplay loop muted playsinline controls src="reel3.mp4"></video>
+        <video autoplay loop muted playsinline controls src="reel4.mp4"></video>
+    </div>
+</section>
+
+<!-- Новый блок: Почему я -->
 <section class="fade">
-<div class="title">Горизонтальные видео</div>
-<div class="row horizontal">
-<video autoplay muted loop playsinline>
-  <source src="./work1.mp4" type="video/mp4">
-</video>
+    <div class="title">Why Me</div>
+    <div class="info-grid">
+        
+        <div class="info-card">
+            <h3>Фокус с первых секунд</h3>
+            <p>Знаю, как зацепить зрителя с 1-й секунды. Делаю такие хуки и динамику, что человек просто не сможет пролистнуть твое видео. Удержание будет на максимуме.</p>
+        </div>
 
-<video autoplay muted loop playsinline>
-  <source src="./work2.mp4" type="video/mp4">
-</video>
-</div>
-</section>
+        <div class="info-card">
+            <h3>Актуальные тренды</h3>
+            <p>Шарю за тренды и алгоритмы. Никакого устаревшего монтажа. Слежу за актуальной стилистикой и визуальными фишками, которые прямо сейчас залетают в топ.</p>
+        </div>
 
-<section class="fade">
-<div class="title">Вертикальные видео</div>
-<div class="row reels">
-<video autoplay muted loop playsinline>
-  <source src="./reel1.mp4" type="video/mp4">
-</video>
+        <div class="info-card">
+            <h3>Монтаж, который продает</h3>
+            <p>Не просто красиво склеиваю кадры, а создаю правильную атмосферу с помощью саунд-дизайна и эффектов. Мои видео работают на твой личный бренд.</p>
+        </div>
 
-<video autoplay muted loop playsinline>
-  <source src="./reel2.mp4" type="video/mp4">
-</video>
-<video autoplay muted loop playsinline>
-  <source src="./reel3.mp4" type="video/mp4">
-</video>
-
-<video autoplay muted loop playsinline>
-  <source src="./reel4.mp4" type="video/mp4">
-</video>
-</div>
-</section>
-
-<section class="links fade">
-<a href="https://t.me/zumqm" target="_blank">Связь со мной — Telegram</a>
-</section>
-
-<section class="links fade">
-<div class="title">Мои соц сети</div>
-<a href="https://www.youtube.com/@lundy009" target="_blank">YouTube</a>
-<a href="https://www.tiktok.com/@lundy_montage" target="_blank">TikTok</a>
+    </div>
 </section>
 
 <script>
+// Плавное появление блоков при скролле
 const faders = document.querySelectorAll('.fade');
-
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if(entry.isIntersecting){
             entry.target.classList.add('show');
         }
     });
-});
+}, { threshold: 0.05 });
 
 faders.forEach(el => observer.observe(el));
+
+// Умный звук: при ручном старте видео звук включается сам
+document.querySelectorAll('video').forEach(video => {
+    video.addEventListener('play', () => {
+        if (video.muted) {
+            video.muted = false;
+        }
+    });
+});
 </script>
 
 </body>
